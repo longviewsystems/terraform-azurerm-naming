@@ -5,5 +5,8 @@ repos:
     - id: terraform_fmt
     - id: terraform_docs
     - id: terraform_tflint
-      args:
-        - --args=--module
+      name: Initialize tflint 
+      args: 
+        - --args=--init
+        - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl    
+    - id: terraform_tflint
