@@ -1,3 +1,19 @@
+# 1.0.0 (2022-06-04)
+
+
+### Bug Fixes
+
+* reset config ([92a10a9](https://github.com/longviewsystems/terraform-azurerm-naming/commit/92a10a9e1c394dcc05d766899fb45260d2431bc0))
+* rm extra file ([820dc25](https://github.com/longviewsystems/terraform-azurerm-naming/commit/820dc25bc51c04ebf5b453ca97cede9199ab3317))
+
+
+### Features
+
+* intial version ([57c0034](https://github.com/longviewsystems/terraform-azurerm-naming/commit/57c0034eda4322034342b321416d44011ddb8a8e))
+* update pre-commit ([bcf2a49](https://github.com/longviewsystems/terraform-azurerm-naming/commit/bcf2a49b6fb72d1c149dbd454249dcaf50797b59))
+* update tests ([9d3333c](https://github.com/longviewsystems/terraform-azurerm-naming/commit/9d3333c8d299933250a51dc22267d6ece90764cf))
+* working version ([e97a434](https://github.com/longviewsystems/terraform-azurerm-naming/commit/e97a434a71369133a851e8a5dce969ed394469fa))
+
 # [1.2.0](https://github.com/longviewsystems/terraform-azurerm-common-template/compare/1.1.2...1.2.0) (2022-01-14)
 
 
