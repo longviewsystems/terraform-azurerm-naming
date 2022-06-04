@@ -17,27 +17,27 @@ variable "organization" {
 }
 
 variable "location" {
-  type = string
+  type        = string
   description = "The value to replace the 'Location' name components with."
-  default = "wu"
+  default     = "wu"
 }
 
 variable "proj_app_or_svc" {
-  type = string
+  type        = string
   description = "The value to replace the 'ProjAppSvc' name components"
-  default = "mtx"
+  default     = "mtx"
 }
 
 variable "unit_or_dept" {
-  type = string
-  description = "The value to replace the 'ProjAppSvc' name components"
-  default = "fin"
+  type        = string
+  description = "The value to replace the 'UnitDept' name components"
+  default     = "fin"
 }
 
 variable "instance" {
-  type = string
+  type        = string
   description = "The value to replace the 'Instance' name components"
-  default = "01"
+  default     = "01"
 }
 
 /***********/
@@ -53,7 +53,6 @@ variable "unique_length" {
   type        = number
   description = "The length of the random string"
   default     = 4
-  
 }
 
 variable "unique_include_numbers" {
