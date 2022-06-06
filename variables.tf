@@ -45,8 +45,8 @@ variable "instance" {
 /***********/
 variable "unique_seed" {
   type        = string
-  description = "The seed for the random generator"
-  default     = "random"
+  description = "The seed for the random generator.  This value should be random.  It will be appended in place of a random string in the names."
+  default     = ""  
 }
 
 variable "unique_length" {
