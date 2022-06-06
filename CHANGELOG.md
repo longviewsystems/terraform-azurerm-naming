@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/longviewsystems/terraform-azurerm-naming/compare/1.0.6...1.0.7) (2022-06-06)
+
+
+### Bug Fixes
+
+* update seed ([5110e1b](https://github.com/longviewsystems/terraform-azurerm-naming/commit/5110e1b5d15fd28e2ee2a1195141aa7e1104e003))
+
 ## [1.0.6](https://github.com/longviewsystems/terraform-azurerm-naming/compare/1.0.5...1.0.6) (2022-06-06)
 
 ## [1.0.5](https://github.com/longviewsystems/terraform-azurerm-naming/compare/1.0.4...1.0.5) (2022-06-06)
