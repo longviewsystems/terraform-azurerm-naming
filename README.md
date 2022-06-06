@@ -16,14 +16,14 @@ Features:
 * Names are validated against allowed Azure naming values.
 * Resources that do not support special characters like hyphens have them removed (e.g. Azure Storage Account names).
 
-These name components align with the (Azure Naming Tool)[https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool] which is part of the Azure CLoud Adoption Framework list of (tools)[https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/resources/tools-templates].  The Azure Naming Tool is very useful for generating full naming conventions.
+These name components align with the [Azure Naming Tool](https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool) which is part of the Azure CLoud Adoption Framework list of [tools](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/resources/tools-templates).  The Azure Naming Tool is very useful for generating full naming conventions.
 
-A sample (Azure Naming Tool)[https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool] is in ./AzNamingTool. 
+A sample [Azure Naming Tool](https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool) is in ./AzNamingTool. 
 
 # Limitations
 * Certain Resource types (e.g. Virtual Machines) support very short names, and the naming convention will be truncated to the length of the Resource Type.  This may remove naming components that are important.
 * Multiple instances should be produced by running the module in a for loop.
-* Maintaining the list of resources is challenging and requires a lot of manual work.  In some cases the names produced by this module may not match the (Azure Naming Tool)[https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool].  Names should be double checked.
+* Maintaining the list of resources is challenging and requires a lot of manual work.  In some cases the names produced by this module may not match the [Azure Naming Tool](https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool).  Names should be double checked.
 
 # Usage
 
