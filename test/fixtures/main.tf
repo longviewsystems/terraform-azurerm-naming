@@ -1,30 +1,30 @@
 module "test_one" {
-  source = "../../"
+  source          = "../../"
   name_components = ["ResourceType", "Org", "ProjAppSvc", "Environment", "Location", "Instance"]
-  environment = "dev"
-  organization = "rog"
-  location = "wu"
+  environment     = "dev"
+  organization    = "rog"
+  location        = "wu"
   proj_app_or_svc = "mtx"
-  unit_or_dept = "fin"
-  instance = "01"
+  unit_or_dept    = "fin"
+  instance        = "01"
 }
 
 
 module "test_two" {
-  source = "../../"
+  source          = "../../"
   name_components = ["ResourceType", "ProjAppSvc", "Environment", "UnitDept", "Location", "Instance"]
-  environment = "prd"
-  location = "cc"
+  environment     = "prd"
+  location        = "cc"
   proj_app_or_svc = "svt"
-  unit_or_dept = "acc"
-  instance = "02"
+  unit_or_dept    = "acc"
+  instance        = "02"
 }
 
 module "test_three" {
-  source = "../../"
+  source          = "../../"
   name_components = ["ResourceType", "ProjAppSvc", "Environment", "UnitDept", "Location"]
-  environment = "prod"
-  location = "scu"
+  environment     = "prod"
+  location        = "scu"
   proj_app_or_svc = "dnl"
-  unit_or_dept = "it"
+  unit_or_dept    = "it"
 }
