@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/longviewsystems/terraform-azurerm-naming/compare/1.0.4...1.0.5) (2022-06-06)
+
+
+### Bug Fixes
+
+* rm azurerm provider ([c33e509](https://github.com/longviewsystems/terraform-azurerm-naming/commit/c33e509288595c31568005b9b7bec5168886c5a5))
+
 ## [1.0.4](https://github.com/longviewsystems/terraform-azurerm-naming/compare/1.0.3...1.0.4) (2022-06-06)
 
 
