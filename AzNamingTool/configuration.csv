@@ -17,6 +17,7 @@
 "Environment","Staging","stg"
 "Environment","Shared","shd"
 "Environment","UAT","uat"
+"Environment","HUB","hub"
 "Clouds","AzureCloud","AzureCloud"
 "GeoGroups","Canada","Canada"
 "GeoGroups","US","US"
