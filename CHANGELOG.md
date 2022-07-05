@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/longviewsystems/terraform-azurerm-naming/compare/1.0.7...1.1.0) (2022-07-05)
+
+
+### Bug Fixes
+
+* rm copilot ([be8e71e](https://github.com/longviewsystems/terraform-azurerm-naming/commit/be8e71eaeaef928d99fef6ac8e6d133652c119dc))
+* rm docker.sock ([d3701f8](https://github.com/longviewsystems/terraform-azurerm-naming/commit/d3701f854ffc07b22ac577768df33841baf5b17e))
+
+
+### Features
+
+* add HUB ([3d90818](https://github.com/longviewsystems/terraform-azurerm-naming/commit/3d90818208bf55941a573b062cc0b1f52f884874))
+* align with standard naming ([93c5314](https://github.com/longviewsystems/terraform-azurerm-naming/commit/93c5314bedc3598b699d334c8ce6dc87a2c64e4c))
+
 ## [1.0.7](https://github.com/longviewsystems/terraform-azurerm-naming/compare/1.0.6...1.0.7) (2022-06-06)
 
 
