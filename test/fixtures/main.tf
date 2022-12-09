@@ -21,10 +21,11 @@ module "test_two" {
 }
 
 module "test_three" {
-  source          = "../../"
-  name_components = ["ResourceType", "ProjAppSvc", "Environment", "UnitDept", "Location"]
-  environment     = "prod"
-  location        = "scu"
-  proj_app_or_svc = "dnl"
-  unit_or_dept    = "it"
+  source            = "../../"
+  name_components   = ["ResourceType", "ProjAppSvc", "Environment", "UnitDept", "Location"]
+  environment       = "prod"
+  location          = "scu"
+  proj_app_or_svc   = "dnl"
+  unit_or_dept      = "it"
+  output_debug_info = true
 }

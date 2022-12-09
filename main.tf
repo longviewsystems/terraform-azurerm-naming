@@ -22,15 +22,14 @@ locals {
 
 }
 
-module "naming" {
-  source                 = "Azure/naming/azurerm"
-  version                = "0.2.0"
-  prefix                 = local.prefixes
-  suffix                 = local.suffixes
-  unique-seed            = var.unique_seed
-  unique-length          = var.unique_length
-  unique-include-numbers = var.unique_include_numbers
+resource "azurecaf_name" "naming" {
+  resource_types = var.resource_types
+  prefixes       = local.prefixes
+  suffixes       = local.suffixes
+  random_length  = var.unique_length
+  random_seed    = var.unique_seed
+  clean_input    = var.clean_input
+  separator      = var.separator
+  use_slug       = var.use_slug
 }
-
-
 

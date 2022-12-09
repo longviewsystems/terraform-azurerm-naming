@@ -1,3 +1,7 @@
+/***********/
+/* Naming components.
+/***********/
+
 variable "name_components" {
   type        = list(string)
   description = "The components of the names.  Each compoent will be replaced with a value from one of the variables.  See the readme for further details."
@@ -44,19 +48,49 @@ variable "instance" {
 /* RANDOM Characters
 /***********/
 variable "unique_seed" {
-  type        = string
+  type        = number
   description = "The seed for the random generator.  This value should be random.  It will be appended in place of a random string in the names."
-  default     = ""  
+  default     = null
 }
 
 variable "unique_length" {
   type        = number
-  description = "The length of the random string"
-  default     = 4
+  description = "The length of the random string to insert into the names."
+  default     = 0
 }
 
-variable "unique_include_numbers" {
+/***********/
+/* Naming controls
+/***********/
+variable "resource_types" {
+  type        = list(any)
+  description = "A list of resource type(s) that should be generated (output) using the same settings.  Pick from this list: https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/resources/azurecaf_name#resource-types"
+  default     = ["azurerm_resource_group", "azurerm_app_service", "azurerm_storage_account", "azurerm_key_vault", "azurerm_network_watcher", "azurerm_network_security_group", "azurerm_virtual_network", "azurerm_subnet", "azurerm_virtual_network_gateway", "azurerm_firewall"]
+}
+
+variable "clean_input" {
   type        = bool
-  description = "Include numbers in the random string"
+  description = "Remove any noncompliant character from the name, suffix or prefix."
+  default     = true
+}
+
+variable "separator" {
+  type        = string
+  description = "The separator character to use between prefixes, resource type, name, suffixes, random character."
+  default     = "-"
+}
+
+variable "use_slug" {
+  type        = bool
+  description = "If a slug should be added to the name - If you put false no slug (the few letters that identify the resource type) will be added to the name."
+  default     = true
+}
+
+/***********/
+/* Output Control
+/***********/
+variable "output_debug_info" {
+  type        = bool
+  description = "Limits the output of the module to names by default (false)."
   default     = false
 }
