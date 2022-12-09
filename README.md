@@ -18,8 +18,7 @@ Features:
 * Uses the Microsoft maintained Azure CAF naming module ([aztfmod/azurecaf](https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/resources/azurecaf_name)).
    * Supports the [list](https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/resources/azurecaf_name#resource-types) of resources supported by Azure CAF Module.
 * Limit the output to just the required resources.
-* TODO: Add a special org stub for Storage Accounts to ensure they are globally unique, but also consistent to an organization.
-* TODO: Randomize names flag:  A flag that randomizes the names without changing the code.
+* Randomize names flag:  A flag that randomizes the names without changing the code.
 
 These name components align with the [Azure Naming Tool](https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool) which is part of the Azure CLoud Adoption Framework list of [tools](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/resources/tools-templates).  The Azure Naming Tool is very useful for generating full naming conventions.
 
@@ -123,6 +122,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_clean_input"></a> [clean\_input](#input\_clean\_input) | Remove any noncompliant character from the name, suffix or prefix. | `bool` | `true` | no |
+| <a name="input_enable_random_name_component"></a> [enable\_random\_name\_component](#input\_enable\_random\_name\_component) | Enable or disable random name component.  Sets variable unique\_length to 0. | `bool` | `false` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | The value to replace the 'Environment' name components with. | `string` | `"dev"` | no |
 | <a name="input_instance"></a> [instance](#input\_instance) | The value to replace the 'Instance' name components | `string` | `"01"` | no |
 | <a name="input_location"></a> [location](#input\_location) | The value to replace the 'Location' name components with. | `string` | `"wu"` | no |
@@ -132,7 +132,7 @@ No modules.
 | <a name="input_proj_app_or_svc"></a> [proj\_app\_or\_svc](#input\_proj\_app\_or\_svc) | The value to replace the 'ProjAppSvc' name components | `string` | `"mtx"` | no |
 | <a name="input_resource_types"></a> [resource\_types](#input\_resource\_types) | A list of resource type(s) that should be generated (output) using the same settings.  Pick from this list: https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/resources/azurecaf_name#resource-types | `list(any)` | <pre>[<br>  "azurerm_resource_group",<br>  "azurerm_app_service",<br>  "azurerm_storage_account",<br>  "azurerm_key_vault",<br>  "azurerm_network_watcher",<br>  "azurerm_network_security_group",<br>  "azurerm_virtual_network",<br>  "azurerm_subnet",<br>  "azurerm_virtual_network_gateway",<br>  "azurerm_firewall"<br>]</pre> | no |
 | <a name="input_separator"></a> [separator](#input\_separator) | The separator character to use between prefixes, resource type, name, suffixes, random character. | `string` | `"-"` | no |
-| <a name="input_unique_length"></a> [unique\_length](#input\_unique\_length) | The length of the random string to insert into the names. | `number` | `0` | no |
+| <a name="input_unique_length"></a> [unique\_length](#input\_unique\_length) | The length of the random string to insert into the names.  Variable enable\_random\_name\_component must be true. | `number` | `4` | no |
 | <a name="input_unique_seed"></a> [unique\_seed](#input\_unique\_seed) | The seed for the random generator.  This value should be random.  It will be appended in place of a random string in the names. | `number` | `null` | no |
 | <a name="input_unit_or_dept"></a> [unit\_or\_dept](#input\_unit\_or\_dept) | The value to replace the 'UnitDept' name components | `string` | `"fin"` | no |
 | <a name="input_use_slug"></a> [use\_slug](#input\_use\_slug) | If a slug should be added to the name - If you put false no slug (the few letters that identify the resource type) will be added to the name. | `bool` | `true` | no |
