@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/longviewsystems/terraform-azurerm-naming/compare/1.1.0...1.2.0) (2022-12-09)
+
+
+### Features
+
+* update naming module version. ([07bd847](https://github.com/longviewsystems/terraform-azurerm-naming/commit/07bd84760bb60e8913fe21b45e6a29f56e3202c6))
+
 # [1.1.0](https://github.com/longviewsystems/terraform-azurerm-naming/compare/1.0.7...1.1.0) (2022-07-05)
 
 
