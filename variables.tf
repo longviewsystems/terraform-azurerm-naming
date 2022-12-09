@@ -48,9 +48,9 @@ variable "instance" {
 /* RANDOM Characters
 /***********/
 variable "enable_random_name_component" {
-  type        = bool
+  type = bool
   description = "Enable or disable random name component.  Sets variable unique_length to 0."
-  default     = false
+  default = false
 }
 
 variable "unique_seed" {
