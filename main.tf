@@ -20,13 +20,17 @@ locals {
   prefixes = slice(local.update_ud, 0, local.index_of_resource_type)
   suffixes = slice(local.update_ud, local.index_of_resource_type + 1, local.num_of_elements)
 
+  #Randomize the name 
+  #if enable_random_name_component, then use var.unique_length, else use 0 (disable).
+  unique_length = var.enable_random_name_component ? var.unique_length : 0
+
 }
 
 resource "azurecaf_name" "naming" {
   resource_types = var.resource_types
   prefixes       = local.prefixes
   suffixes       = local.suffixes
-  random_length  = var.unique_length
+  random_length  = local.unique_length
   random_seed    = var.unique_seed
   clean_input    = var.clean_input
   separator      = var.separator
