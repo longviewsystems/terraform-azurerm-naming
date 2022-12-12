@@ -18,7 +18,17 @@ module "test_two" {
   proj_app_or_svc = "svt"
   unit_or_dept    = "acc"
   instance        = "02"
-  //enable_random_name_component = true
+}
+
+module "test_two_random" {
+  source          = "../../"
+  name_components = ["ResourceType", "ProjAppSvc", "Environment", "UnitDept", "Location", "Instance"]
+  environment     = "prd"
+  location        = "cc"
+  proj_app_or_svc = "svt"
+  unit_or_dept    = "acc"
+  instance        = "02"
+  enable_random_name_component = true
 }
 
 module "test_three" {
