@@ -22,6 +22,11 @@ output "test_one_virtual_network" {
   value = module.test_one.names["azurerm_virtual_network"]
 }
 
+output "test_one_general" {
+  value = module.test_one.names["general"]
+}
+
+
 /* Test two outputs **/
 output "test_two_app_service_output" {
   value = module.test_two
