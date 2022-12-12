@@ -1,7 +1,4 @@
 {
-  "branches": [
-    "main"
-  ],
   "tagFormat": "${version}",
   "plugins": [
     [
