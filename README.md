@@ -19,13 +19,12 @@ Features:
    * Supports the [list](https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/resources/azurecaf_name#resource-types) of resources supported by Azure CAF Module.
 * Limit the output to just the required resources.
 * Randomize names flag:  A flag that randomizes the names without changing the code.
+* Supports a 'general' resource type that does not include the Resource type code (e.g. Virtual Wan name vwan-rog-mtx-dev-wu-01, and general name rog-mtx-dev-wu-01)
 
-These name components align with the [Azure Naming Tool](https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool) which is part of the Azure CLoud Adoption Framework list of [tools](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/resources/tools-templates).  The Azure Naming Tool is very useful for generating full naming conventions.
-
-A sample [Azure Naming Tool](https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool) is in ./AzNamingTool. 
+These name components align with the [Azure Naming Tool](https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool) which is part of the Azure Cloud Adoption Framework list of [tools](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/resources/tools-templates).  The Azure Naming Tool is very useful for generating full naming conventions.
 
 # Limitations
-* Certain Resource types (e.g. Virtual Machines) support very short names, and the naming convention will be truncated to the length of the Resource Type.  This may remove naming components that are important.
+* Certain Resource types (e.g. Virtual Machines) support very short names, and the naming convention will be truncated to the length of the Resource Type.  This may remove naming components that are important.  Names should be double checked.
 * Multiple instances should be produced by running the module in a for loop.
 * Maintaining the list of resources is challenging and requires a lot of manual work.  In some cases the names produced by this module may not match the [Azure Naming Tool](https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool).  Names should be double checked.
 
@@ -42,7 +41,6 @@ module "sample_one" {
   organization = "rog"
   location = "wu"
   proj_app_or_svc = "mtx"
-  unit_or_dept = "fin"
   instance = "01"
 }
 ```
@@ -75,23 +73,6 @@ Sample names:
   * virtual_network = "vnet-svt-prd-acc-cc-02"
 
 ------------
-
-
-## Output
-
-Each one of the resources emits the name of the resource and other properties:
-
-| Property | Type | Description |
-| ----- |----- | ---- |
-| name | string | name of the resource including respective suffixes and prefixes applied |
-| name_unique | string | same as the name but with random chars added for uniqueness |
-| dashes | bool | if these resources support dashes |
-| slug | string | letters to identify this resource among others |
-| min_length | integer | Minimum length required for this resource name |
-| max_length | integer | Maximum length allowed for this resource name |
-| scope | string | scope which this name needs to be unique, such as `resourcegroup` or `global`  |
-| regex | string | Terraform compatible version of the regex |
-
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
