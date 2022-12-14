@@ -17,7 +17,7 @@ locals {
   update_ud   = [for nc in local.update_org : nc == "UnitDept" ? var.unit_or_dept : nc]
 
   #Split the list into prefixes and suffixes
-  prefixes = slice(local.update_ud, 0, local.index_of_resource_type)
+  prefixes      = slice(local.update_ud, 0, local.index_of_resource_type)
   temp_suffixes = slice(local.update_ud, local.index_of_resource_type + 1, local.num_of_elements)
 
   #Randomize the name 

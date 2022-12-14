@@ -84,7 +84,7 @@ Sample names:
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1 |
 | <a name="requirement_azurecaf"></a> [azurecaf](#requirement\_azurecaf) | 1.2.23 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | ~>3.4 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | >=3.4 |
 
 ## Providers
 
