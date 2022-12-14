@@ -15,13 +15,17 @@ Features:
 * Names are truncated based on the length the Resource Type supports.
 * Names are validated against allowed Azure naming values.
 * Resources that do not support special characters like hyphens have them removed (e.g. Azure Storage Account names).
+* Uses the Microsoft maintained Azure CAF naming module ([aztfmod/azurecaf](https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/resources/azurecaf_name)).
+   * Supports the [list](https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/resources/azurecaf_name#resource-types) of resources supported by Azure CAF Module.
+* Limit the output to just the required resources.
+* Randomize names flag:  A flag that randomizes the names without changing the code.  
+   * Uses [hashicorp/random ](https://registry.terraform.io/providers/hashicorp/random/3.4.3) provider to control randomization.
+* Supports a 'general' resource type that does not include the Resource type code (e.g. Virtual Wan name vwan-rog-mtx-dev-wu-01, and general name rog-mtx-dev-wu-01)
 
-These name components align with the [Azure Naming Tool](https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool) which is part of the Azure CLoud Adoption Framework list of [tools](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/resources/tools-templates).  The Azure Naming Tool is very useful for generating full naming conventions.
-
-A sample [Azure Naming Tool](https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool) is in ./AzNamingTool. 
+These name components align with the [Azure Naming Tool](https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool) which is part of the Azure Cloud Adoption Framework list of [tools](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/resources/tools-templates).  The Azure Naming Tool is very useful for generating full naming conventions.
 
 # Limitations
-* Certain Resource types (e.g. Virtual Machines) support very short names, and the naming convention will be truncated to the length of the Resource Type.  This may remove naming components that are important.
+* Certain Resource types (e.g. Virtual Machines) support very short names, and the naming convention will be truncated to the length of the Resource Type.  This may remove naming components that are important.  Names should be double checked.
 * Multiple instances should be produced by running the module in a for loop.
 * Maintaining the list of resources is challenging and requires a lot of manual work.  In some cases the names produced by this module may not match the [Azure Naming Tool](https://github.com/microsoft/CloudAdoptionFramework/tree/master/ready/AzNamingTool).  Names should be double checked.
 
@@ -32,13 +36,14 @@ Name componets are specified in the order below, along with sample replacement v
 
 ```
 module "sample_one" {
-  source = "../../"
+  source   = "git::https://github.com/longviewsystems/terraform-azurerm-naming.git?ref=2.0.0"
+
+  resource_types 
   name_components = ["ResourceType", "Org", "ProjAppSvc", "Environment", "Location", "Instance"]
   environment = "dev"
   organization = "rog"
   location = "wu"
   proj_app_or_svc = "mtx"
-  unit_or_dept = "fin"
   instance = "01"
 }
 ```
@@ -72,64 +77,57 @@ Sample names:
 
 ------------
 
-
-## Output
-
-Each one of the resources emits the name of the resource and other properties:
-
-| Property | Type | Description |
-| ----- |----- | ---- |
-| name | string | name of the resource including respective suffixes and prefixes applied |
-| name_unique | string | same as the name but with random chars added for uniqueness |
-| dashes | bool | if these resources support dashes |
-| slug | string | letters to identify this resource among others |
-| min_length | integer | Minimum length required for this resource name |
-| max_length | integer | Maximum length allowed for this resource name |
-| scope | string | scope which this name needs to be unique, such as `resourcegroup` or `global`  |
-| regex | string | Terraform compatible version of the regex |
-
-
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.99 |
+| <a name="requirement_azurecaf"></a> [azurecaf](#requirement\_azurecaf) | 1.2.23 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~>3.4 |
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_azurecaf"></a> [azurecaf](#provider\_azurecaf) | 1.2.23 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.2.0 |
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_naming"></a> [naming](#module\_naming) | Azure/naming/azurerm | 0.1.1 |
+No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [azurecaf_name.naming](https://registry.terraform.io/providers/aztfmod/azurecaf/1.2.23/docs/resources/name) | resource |
+| [random_string.random](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_clean_input"></a> [clean\_input](#input\_clean\_input) | Remove any noncompliant character from the name, suffix or prefix. | `bool` | `true` | no |
+| <a name="input_enable_random_name_component"></a> [enable\_random\_name\_component](#input\_enable\_random\_name\_component) | Enable or disable random name component.  Sets variable unique\_length to 0. | `bool` | `false` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | The value to replace the 'Environment' name components with. | `string` | `"dev"` | no |
 | <a name="input_instance"></a> [instance](#input\_instance) | The value to replace the 'Instance' name components | `string` | `"01"` | no |
 | <a name="input_location"></a> [location](#input\_location) | The value to replace the 'Location' name components with. | `string` | `"wu"` | no |
 | <a name="input_name_components"></a> [name\_components](#input\_name\_components) | The components of the names.  Each compoent will be replaced with a value from one of the variables.  See the readme for further details. | `list(string)` | <pre>[<br>  "ResourceType",<br>  "Org",<br>  "ProjAppSvc",<br>  "Environment",<br>  "Location",<br>  "Instance"<br>]</pre> | no |
 | <a name="input_organization"></a> [organization](#input\_organization) | The value to replace the 'Org' name components with. | `string` | `"rog"` | no |
+| <a name="input_output_debug_info"></a> [output\_debug\_info](#input\_output\_debug\_info) | Limits the output of the module to names by default (false). | `bool` | `false` | no |
 | <a name="input_proj_app_or_svc"></a> [proj\_app\_or\_svc](#input\_proj\_app\_or\_svc) | The value to replace the 'ProjAppSvc' name components | `string` | `"mtx"` | no |
-| <a name="input_unique_include_numbers"></a> [unique\_include\_numbers](#input\_unique\_include\_numbers) | Include numbers in the random string | `bool` | `false` | no |
-| <a name="input_unique_length"></a> [unique\_length](#input\_unique\_length) | The length of the random string | `number` | `4` | no |
-| <a name="input_unique_seed"></a> [unique\_seed](#input\_unique\_seed) | The seed for the random generator | `string` | `"random"` | no |
+| <a name="input_resource_types"></a> [resource\_types](#input\_resource\_types) | A list of resource type(s) that should be generated (output) using the same settings.  Pick from this list: https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/resources/azurecaf_name#resource-types | `list(string)` | <pre>[<br>  "azurerm_resource_group",<br>  "azurerm_app_service",<br>  "azurerm_storage_account",<br>  "azurerm_key_vault",<br>  "azurerm_network_watcher",<br>  "azurerm_network_security_group",<br>  "azurerm_virtual_network",<br>  "azurerm_subnet",<br>  "azurerm_virtual_network_gateway",<br>  "azurerm_firewall"<br>]</pre> | no |
+| <a name="input_separator"></a> [separator](#input\_separator) | The separator character to use between prefixes, resource type, name, suffixes, random character. | `string` | `"-"` | no |
+| <a name="input_unique_length"></a> [unique\_length](#input\_unique\_length) | The length of the random string to insert into the names.  Variable enable\_random\_name\_component must be true. | `number` | `4` | no |
 | <a name="input_unit_or_dept"></a> [unit\_or\_dept](#input\_unit\_or\_dept) | The value to replace the 'UnitDept' name components | `string` | `"fin"` | no |
+| <a name="input_use_slug"></a> [use\_slug](#input\_use\_slug) | If a slug should be added to the name - If you put false no slug (the few letters that identify the resource type) will be added to the name. | `bool` | `true` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
+| <a name="output_debug"></a> [debug](#output\_debug) | A map of resources of all the supported resources. |
 | <a name="output_names"></a> [names](#output\_names) | A map of resources of all the supported resources. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

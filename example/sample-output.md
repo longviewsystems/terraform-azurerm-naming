@@ -1,6 +1,9 @@
+#TODO: Update this
+
+
 # Notes
 Update this with the following command:
 
 ``` bash
-terraform apply -no-color > ./example/sample-output.txt 
+terraform apply -auto-approve -no-color > ../../example/sample-output.txt
 ```
