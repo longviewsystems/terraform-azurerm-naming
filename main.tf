@@ -18,20 +18,28 @@ locals {
 
   #Split the list into prefixes and suffixes
   prefixes = slice(local.update_ud, 0, local.index_of_resource_type)
-  suffixes = slice(local.update_ud, local.index_of_resource_type + 1, local.num_of_elements)
+  temp_suffixes = slice(local.update_ud, local.index_of_resource_type + 1, local.num_of_elements)
 
   #Randomize the name 
   #if enable_random_name_component, then use var.unique_length, else use 0 (disable).
-  unique_length = var.enable_random_name_component ? var.unique_length : 0
+  suffixes = var.enable_random_name_component ? concat(local.temp_suffixes, [random_string.random.result]) : local.temp_suffixes
 
+}
+
+//build a random string of a certain legth with lower case letters only.
+resource "random_string" "random" {
+  length  = var.unique_length
+  special = false
+  upper   = false
+  lower   = true
+  numeric = false
 }
 
 resource "azurecaf_name" "naming" {
   resource_types = var.resource_types
   prefixes       = local.prefixes
   suffixes       = local.suffixes
-  random_length  = local.unique_length
-  random_seed    = var.unique_seed
+  random_length  = 0 //Built-in random feature has major issue.
   clean_input    = var.clean_input
   separator      = var.separator
   use_slug       = var.use_slug

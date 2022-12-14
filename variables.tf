@@ -53,12 +53,6 @@ variable "enable_random_name_component" {
   default     = false
 }
 
-variable "unique_seed" {
-  type        = number
-  description = "The seed for the random generator.  This value should be random.  It will be appended in place of a random string in the names."
-  default     = null
-}
-
 variable "unique_length" {
   type        = number
   description = "The length of the random string to insert into the names.  Variable enable_random_name_component must be true."
