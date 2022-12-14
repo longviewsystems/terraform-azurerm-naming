@@ -69,7 +69,7 @@ variable "unique_length" {
 /* Naming controls
 /***********/
 variable "resource_types" {
-  type        = list(any)
+  type        = list(string)
   description = "A list of resource type(s) that should be generated (output) using the same settings.  Pick from this list: https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/resources/azurecaf_name#resource-types"
   default     = ["azurerm_resource_group", "azurerm_app_service", "azurerm_storage_account", "azurerm_key_vault", "azurerm_network_watcher", "azurerm_network_security_group", "azurerm_virtual_network", "azurerm_subnet", "azurerm_virtual_network_gateway", "azurerm_firewall"]
 }
